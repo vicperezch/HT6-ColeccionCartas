@@ -19,7 +19,7 @@ public class Reader{
     /**
      * Constructor de la clase reader
      */
-    Reader() {
+    public Reader() {
         data = new File("cards_desc.txt");
     }
 
