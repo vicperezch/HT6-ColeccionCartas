@@ -1,7 +1,6 @@
 package src;
 
 import java.util.Map;
-import src.Reader;
 
 /**
  * @autor Nils Muralles & Víctor Pérez
@@ -12,19 +11,17 @@ public class CardManagement {
     private Map<String, String> cards;
     private Map<String, String> deck;
     private Map<String, Integer> cardCount;
-    private Reader reader;
 
     /**
      * Constructor de CardManagement que asigna la implementación de la interfaz Map que se utilizará 
-     * @param deck Map que contiene las cartas del usuario
+     * @param userDeck Map que contiene las cartas del usuario
      * @param cardCount Map que lleva la cuenta de una carta del usuario
      * @param cards Map que contiene todas las cartas de cards_desc.txt
      */
-    public CardManagement(Map<String, String> deck, Map<String, Integer> cardCount, Map<String, String> cards) {
-        this.deck = deck;
+    public CardManagement(Map<String, String> userDeck, Map<String, Integer> cardCount, Map<String, String> cards) {
+        this.deck = userDeck;
         this.cardCount = cardCount;
-        this.reader = new Reader();
-        this.cards = reader.readCards(cards);
+        this.cards = cards;
     }
 
     /**
@@ -62,5 +59,13 @@ public class CardManagement {
         }
     }
     
+    /**
+     * Devuelve el tipo de una carta
+     * @param cardName Nombre de la carta
+     * @return Tipo de la carta
+     */
+    public String getCardType(String cardName) {
+        return cards.get(cardName);
+    }
     
 }

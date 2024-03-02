@@ -23,4 +23,18 @@ public class CardManagementTest {
         assertEquals(1, (int) cardCount.get(newCard));
         assertEquals("Monstruo", (String) deck.get(newCard));
     }
+
+    @Test
+    public void testGettingOneCardType() {
+        Reader reader = new Reader();
+        HashMap<String, String> deck = new HashMap<String, String>();
+        HashMap<String, Integer> cardCount = new HashMap<String, Integer>();
+        Map<String, String> cards = reader.readCards(new HashMap<String, String>());
+        CardManagement cardManagement = new CardManagement(deck, cardCount, cards);
+
+        String cardName = "Abyss-strom";
+        String cardType = cardManagement.getCardType(cardName);
+
+        assertEquals("Trampa", cardType);
+    }
 }
