@@ -68,6 +68,10 @@ public class CardManagement {
         return cards.get(cardName);
     }
     
+    /**
+     * Formatea la colección del usuario en una String
+     * @return String con el mazo del usuario
+     */
     public String showUserDeck() {
         String deck = "";
 
@@ -76,5 +80,19 @@ public class CardManagement {
         }
 
         return deck;
+    }
+
+    /**
+     * Formatea todas las cartas disponibles en una String
+     * @return String con todas las cartas disponibles
+     */
+    public String showAllCards() {
+        String allCards = "";
+
+        for (String card : this.cards.keySet()) {
+            allCards += card + " | " + cards.get(card) + "\n";
+        }
+
+        return allCards;
     }
 }
