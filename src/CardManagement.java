@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class CardManagement {
     private Map<String, String> cards;
-    private Map<String, String> deck;
+    private Map<String, String> userDeck;
     private Map<String, Integer> cardCount;
 
     /**
@@ -19,7 +19,7 @@ public class CardManagement {
      * @param cards Map que contiene todas las cartas de cards_desc.txt
      */
     public CardManagement(Map<String, String> userDeck, Map<String, Integer> cardCount, Map<String, String> cards) {
-        this.deck = userDeck;
+        this.userDeck = userDeck;
         this.cardCount = cardCount;
         this.cards = cards;
     }
@@ -32,7 +32,7 @@ public class CardManagement {
         boolean cardFound = false;
         for (String card : cards.keySet()) {
             if (card.equals(cardName)) {
-                deck.put(cardName, cards.get(card));
+                userDeck.put(cardName, cards.get(card));
                 cardFound = true;
             }
         }
@@ -68,4 +68,13 @@ public class CardManagement {
         return cards.get(cardName);
     }
     
+    public String showUserDeck() {
+        String deck = "";
+
+        for (String card : this.userDeck.keySet()) {
+            deck += card + " | " + cards.get(card) + " | " + "Cantidad: " + cardCount.get(card) + "\n";
+        }
+
+        return deck;
+    }
 }
