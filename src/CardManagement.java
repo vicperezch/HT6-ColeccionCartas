@@ -1,6 +1,11 @@
 package src;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * @autor Nils Muralles & Víctor Pérez
@@ -95,4 +100,55 @@ public class CardManagement {
 
         return allCards;
     }
+
+    /**
+     * Devuelve las entredas clave-valor ordenadas de una implementación de la interfaz Map
+     * @param <K> Clave
+     * @param <V> Valor
+     * @param map Mapa del que se desean obtener las entradas
+     * @return Entradas ordenadas
+     */
+    public <K extends Comparable<K>, V extends Comparable<V>> List<Map.Entry<K,V>> sortByType(Map<K,V> map) {
+        List<Map.Entry<K,V>> entries = new LinkedList<Map.Entry<K,V>>(map.entrySet());
+
+        Collections.sort(entries, new Comparator<Map.Entry<K,V>>() {
+            @Override
+            public int compare(Entry<K, V> o1, Entry<K, V> o2) {
+                return o1.getValue().toString().compareToIgnoreCase(o2.getValue().toString());
+            }
+        });
+
+        return entries;
+    }
+
+    /**
+     * Formatea las cartas del usuario ordenadas por tipo en un String
+     * @return Cartas del usuario ordenadas
+     */
+    public String showSortedUserDeck() {
+        String sortedCards = "";
+        List<Map.Entry<String,String>> SortedEntries = sortByType(userDeck);
+
+        for (Entry<String,String> entry : SortedEntries) {
+            sortedCards += entry.getKey() + " | " + cards.get(entry.getKey()) + " | " + "Cantidad: " + cardCount.get(entry.getKey()) + "\n";
+        }
+
+        return sortedCards;
+    }
+
+    /**
+     * Formatea todas las cartas ordenadas por tipo en un String
+     * @return Cartas ordenadas
+     */
+    public String showAllSortedCards() {
+        String sortedCards = "";
+        List<Map.Entry<String,String>> SortedEntries = sortByType(cards);
+
+        for (Entry<String,String> entry : SortedEntries) {
+            sortedCards += entry.getKey() + " | " + cards.get(entry.getKey()) + "\n";
+        }
+
+        return sortedCards;
+    }
+        
 }
